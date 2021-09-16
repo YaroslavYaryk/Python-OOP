@@ -2,6 +2,7 @@ import sys
 from functools import reduce
 from operator import mul, add, truediv, sub
 
+
 operations = {
     "add": add,
     "sub": sub,
@@ -18,9 +19,9 @@ def solve_conundrum(operation, digits):
     """
 
     try:
-        print(reduce(lambda a, b: operations[operation](int(a), int(b)), digits))
+        return reduce(lambda a, b: operations[operation](int(a), int(b)), digits)
     except KeyError:
-        print("wrong function")
+        return None
 
 
-solve_conundrum(sys.argv[1],sys.argv[2:] )
+print(solve_conundrum(sys.argv[1],sys.argv[2:]))
