@@ -16,11 +16,9 @@ def get_express_result(expression, index=0):
             if (expression[index+1]).isdigit():
                 # will be analize next two symbols
                 return get_express_result(expression, index + 2)
-            raise ValueError
+            return (False, None)
         else:
-            raise ValueError
-    except ValueError:
-        return (False, None)
+            return (False, None)
     except IndexError:  # there was no any problem
         return (True, eval("".join(i for i in expression)))
 
