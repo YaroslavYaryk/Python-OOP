@@ -22,7 +22,7 @@ class Rectangle():
 	@lenght.setter
 	def lenght(self, value):
 		if not (isinstance(value , float) and value > 0.0 and value < 20.0):
-			raise Exception("wrong type or wrong value")
+			raise Exception("Error")
 		self.__length = value
 
 
@@ -34,7 +34,7 @@ class Rectangle():
 	@width.setter
 	def width(self, value):
 		if not (isinstance(value , float) and value > 0.0 and value < 20.0):
-			raise Exception("wrong type or wrong value")
+			raise ValueError("Error")
 		self.__width = value
 			 
 
@@ -45,16 +45,12 @@ class Rectangle():
 		return 2*(self.__width + self.__length)			 	 
 
 
-	
-def main():
-	a = Rectangle(12,12)
-	assert a.lenght == 12		
+			 	 					 	 				
+a = Rectangle(12,12)
+print(a.lenght)			 	 					 	 				
+a.lenght = 111.2
+print(a.lenght)
+print(a)
 
-	a.lenght = 11.2
-	assert a.lenght == 11.2
-	print(a)
-
-	c = Rectangle("dsadas",12)
-	print(c)
-
-main()
+# c = Rectangle("dsadas",12)
+# print(c)
