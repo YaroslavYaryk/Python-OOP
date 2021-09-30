@@ -45,12 +45,16 @@ class Rectangle():
 		return 2*(self.__width + self.__length)			 	 
 
 
-			 	 					 	 				
-a = Rectangle(12,12)
-print(a.lenght)			 	 					 	 				
-a.lenght = 111.2
-print(a.lenght)
-print(a)
+	
+def main():
+	a = Rectangle(12,12)
+	assert a.lenght == 12		
 
-c = Rectangle("dsadas",12)
-print(c)
+	a.lenght = 11.2
+	assert a.lenght == 11.2
+	print(a)
+
+	c = Rectangle("dsadas",12)
+	print(c)
+
+main()
