@@ -1,19 +1,16 @@
 class Rational:
 
-	def __new__(cls, numerator=1, denominator=1):
+	def __init__(self, numerator=1, denominator=1):
 
 		if isinstance(numerator, int) and isinstance(denominator, int):
 			if denominator:
-				return super().__new__(cls)
-			raise ValueError("denominator mustn't be zero")
+				self.__numerator = numerator
+				self.__denominator = denominator	
+			else:
+				raise ZeroDivision("denominator mustn't be zero")
 		else:
-			raise ValueError("Integers Only")		
+			raise TypeError("Integers Only")		
 
-
-	def __init__(self, numerator=1, denominator=1):
-
-		self.__numerator = numerator
-		self.__denominator = denominator	
 
 	def __str__(self):
 		return f"({self.__numerator}, {self.__denominator})"

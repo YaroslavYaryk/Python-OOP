@@ -1,17 +1,14 @@
 class Rectangle():
 
-	def __new__(cls, length=1, width=1):
-		if isinstance(length, (int, float)) and isinstance(width, (int, float)):
-			if length > 0 and width > 0:
-				return super().__new__(cls)
-			
-			raise ValueError("should be > 0")
-		else:
-			raise ValueError("should be integer or float")	
-
 	def __init__(self, lenth=1, width=1):
-		self.__length = lenth
-		self.__width = width
+		if isinstance(lenth, (int, float)) and isinstance(width, (int, float)):
+			if lenth > 0 and width > 0:
+				self.__length = lenth
+				self.__width = width
+			else:	
+				raise ValueError("should be > 0")	
+		else:
+			raise TypeError("should be integer or float")
 
 	def __str__(self):
 		return f"Rectangle({self.__length}, {self.__width})"
@@ -24,10 +21,9 @@ class Rectangle():
 	
 	@lenght.setter
 	def lenght(self, value):
-		if isinstance(value , float) and value > 0.0 and value < 20.0:
-			self.__length = value
-		else:
-			 raise ValueError("Error")
+		if not (isinstance(value , float) and value > 0.0 and value < 20.0):
+			raise Exception("wrong type or wrong value")
+		self.__length = value
 
 
 	@property
@@ -37,11 +33,10 @@ class Rectangle():
 	
 	@width.setter
 	def width(self, value):
-		if isinstance(value , float) and value > 0.0 and value < 20.0:
-			self.__width = value
-		else:
-			 raise ValueError("Error")
-
+		if not (isinstance(value , float) and value > 0.0 and value < 20.0):
+			raise Exception("wrong type or wrong value")
+		self.__width = value
+			 
 
 	def get_area(self):
 		return self.__width * self.__length
@@ -51,8 +46,11 @@ class Rectangle():
 
 
 			 	 					 	 				
-a = Rectangle("dsadas",12)
+a = Rectangle(12,12)
 print(a.lenght)			 	 					 	 				
-# a.lenght = 15.2
-# print(a.lenght)
-# print(a)
+a.lenght = 111.2
+print(a.lenght)
+print(a)
+
+c = Rectangle("dsadas",12)
+print(c)
