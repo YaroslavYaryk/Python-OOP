@@ -14,7 +14,7 @@ class Tree:
         self.root = None 
 
     def insert(self, value):
-        """insert value to the tree""" 
+        """ insert value to the tree. """ 
 
         if self.root is None:
             self.root = Node(value)
@@ -41,7 +41,7 @@ class Tree:
 
 
     def search(self, value):
-        """ find value in the tree """
+        """ find value in the tree. """
 
         if self.root is not None:
             return self._search(value, self.root)

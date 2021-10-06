@@ -33,7 +33,12 @@ class Customer(object):
 class Order(object):
 
 	def __init__(self, customer, **kwargs):
+		if not (isinstance(customer, Customer)):
+			raise TypeError("customer must be 'Customer' type.")
 		self.__customer = customer
+		for elem in kwargs:
+			if not isinstance(kwargs[elem], Product):
+				raise TypeError("product must be 'Product' type.")
 		self.__products = kwargs
 
 	def __str__(self):
@@ -46,9 +51,8 @@ class Order(object):
 	def get_final_price(self):
 
 		result = 0
-		storage = self.__dict__["_Order__products"]
-		for elem in storage:
-			result += storage[elem]._price * storage[elem]._dimensions
+		for elem in self.__products:
+			result += self.__products[elem]._price * self.__products[elem]._dimensions
 
 		return result
 

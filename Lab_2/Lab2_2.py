@@ -3,7 +3,7 @@ import re
 
 class FileManager(object):
 	""" class that has an info about file
-	and its methods """
+	and its methods. """
 
 	__slots__ = ("__file_name", "__encoding", "__file")	
 
@@ -36,7 +36,7 @@ class FileManager(object):
 
 
 	def get_text(self):
-		"""get all file data"""
+		""" get all file data. """
 
 		return self.__file
 
@@ -58,12 +58,12 @@ class FileManager(object):
 
 
 	def count_special_character(self, symbol):
-		""" find count of special character """
+		""" find count of special character. """
 
 		return self.__file.count(symbol)
 
 	def find_position(self, word):
-		""" find positions of 'word' in the file """
+		""" find positions of 'word' in the file. """
 
 		if len(word) == 1:
 			return [i for i in range(len(self.__file)) if self.__file[i] == word]
