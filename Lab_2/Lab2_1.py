@@ -61,4 +61,4 @@ a = Product(10, "sault", 5)
 b = Customer("Dyhanov", "Yaroslav", "Yuriyovich", 380684862861)
 k = Product(30, "shugar", 50)
 c = Order(b, product1=a, product3=k)
-print(c)
+print(c

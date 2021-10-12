@@ -12,10 +12,6 @@ class FileManager(object):
 			raise TypeError("File name and encoding must be str type")
 		self.__file_name = file_name
 		self.__encoding = encoding
-		self.__file = ""
-		with open(file_name, "r", encoding= encoding) as f:
-			self.__file = f.read()
-
 
 	def __str__(self):
 		return f"FileManager - {self.__file_name}({self.__encoding})"
@@ -37,37 +33,46 @@ class FileManager(object):
 
 	def get_text(self):
 		""" get all file data. """
-
-		return self.__file
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			return f.read()
 
 
 	def count_characters(self):
 
-		return len(self.__file)	
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			return len(f.read())
 
 
 	def count_words(self):
 
-		res = re.split(r"[, ]+", self.__file)
+		file = ""
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			file = f.read()
+		res = re.split(r"[, ]+", file)
 		return len(list(filter(lambda x: x, res)))
 
 	def count_sentences(self):
 
-		res = re.split(r"[.?!]+", self.__file)
+		file = ""
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			file = f.read()
+		res = re.split(r"[.?!]+", file)
 		return len(list(filter(lambda x: x, res)))
 
 
 	def count_special_character(self, symbol):
 		""" find count of special character. """
-
-		return self.__file.count(symbol)
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			return f.read().count(symbol)
 
 	def find_position(self, word):
 		""" find positions of 'word' in the file. """
-
+		sfile = ""
+		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+			file = f.read()
 		if len(word) == 1:
-			return [i for i in range(len(self.__file)) if self.__file[i] == word]
-		return FileManager.__count_word(self.__file, word) 
+			return [i for i in range(len(file)) if file[i] == word]
+		return FileManager.__count_word(file, word) 
 
 	def write_smth_to_file(self, text):
 		with open(self.__file_name, "w", encoding=self.__encoding) as f:
