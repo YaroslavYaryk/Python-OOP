@@ -5,7 +5,7 @@ class FileManager(object):
 	""" class that has an info about file
 	and its methods. """
 
-	__slots__ = ("__file_name", "__encoding", "__file")	
+	__slots__ = ("__file_name", "__encoding", "__file")
 
 	def __init__(self, file_name, encoding="utf-8"):
 		if not (isinstance(file_name, str) and isinstance(encoding, str)):
@@ -21,32 +21,29 @@ class FileManager(object):
 		res = []
 		if string[:len(word)] == word:
 			res.append(0)
-		for i in range(len(string)-len(word)):
+		for i in range(len(string) - len(word)):
 
 			temp_res = ""
-			for j in range(i+1,i+len(word)+1):
+			for j in range(i + 1, i + len(word) + 1):
 				temp_res += string[j]
 			if (word == temp_res):
-				res.append(i+1)
+				res.append(i + 1)
 		return res
-
 
 	def get_text(self):
 		""" get all file data. """
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			return f.read()
-
 
 	def count_characters(self):
 
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			return len(f.read())
-
 
 	def count_words(self):
 
 		file = ""
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			file = f.read()
 		res = re.split(r"[, ]+", file)
 		return len(list(filter(lambda x: x, res)))
@@ -54,30 +51,28 @@ class FileManager(object):
 	def count_sentences(self):
 
 		file = ""
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			file = f.read()
 		res = re.split(r"[.?!]+", file)
 		return len(list(filter(lambda x: x, res)))
 
-
 	def count_special_character(self, symbol):
 		""" find count of special character. """
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			return f.read().count(symbol)
 
 	def find_position(self, word):
 		""" find positions of 'word' in the file. """
 		sfile = ""
-		with open(self.__file_name, "r", encoding= self.__encoding) as f:
+		with open(self.__file_name, "r", encoding=self.__encoding) as f:
 			file = f.read()
 		if len(word) == 1:
 			return [i for i in range(len(file)) if file[i] == word]
-		return FileManager.__count_word(file, word) 
+		return FileManager.__count_word(file, word)
 
 	def write_smth_to_file(self, text):
 		with open(self.__file_name, "w", encoding=self.__encoding) as f:
 			f.write(text)
-
 
 
 a = FileManager("hello.txt")

@@ -1,12 +1,13 @@
 class Product(object):
 
 	__slots__ = ("_description", "_price", "_dimensions")
-	
 
 	def __init__(self, price, description, dimensions):
 		self._description = description
-		if not isinstance(dimensions, (int, float)) and isinstance(price, (int, float)):
+		if not isinstance(dimensions, int) and isinstance(price, (int, float)):
 			raise TypeError("wrong type")
+		if not price > 0 and dimensions > 0:
+			raise ValueError('price or dimensions can\'t be negative')
 		self._price = price
 		self._dimensions = dimensions
 
@@ -32,8 +33,8 @@ class Customer(object):
 
 class Order(object):
 
-	def __init__(self, customer, **kwargs):
-		if not (isinstance(customer, Customer)):
+	def __init__(self, customer=None, **kwargs):
+		if not (isinstance(customer, Customer) or customer is None):
 			raise TypeError("customer must be 'Customer' type.")
 		self.__customer = customer
 		for elem in kwargs:
@@ -42,11 +43,12 @@ class Order(object):
 		self.__products = kwargs
 
 	def __str__(self):
-		return "Customer:\n\t{surname} {name} {patronymic}\nFinal price:\n\t{price}$".format(
-			surname=self.__customer._surname,
-			name=self.__customer._name,
-			patronymic=self.__customer._patronymic,
-			price=self.get_final_price())
+		return "Customer:\n\t{surname} {name} {patronymic}\nFinal price\n\t{price}$"\
+			.format(
+				surname=self.__customer._surname if self.__customer else '',
+				name=self.__customer._name if self.__customer else '',
+				patronymic=self.__customer._patronymic if self.__customer else '',
+				price=self.get_final_price())
 
 	def get_final_price(self):
 
@@ -60,5 +62,5 @@ class Order(object):
 a = Product(10, "sault", 5)
 b = Customer("Dyhanov", "Yaroslav", "Yuriyovich", 380684862861)
 k = Product(30, "shugar", 50)
-c = Order(b, product1=a, product3=k)
-print(c
+c = Order(product1=a, product3=k)
+print(c)
