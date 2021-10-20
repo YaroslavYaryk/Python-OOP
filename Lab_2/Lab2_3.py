@@ -1,9 +1,11 @@
 from pprint import pprint
+from statistics import mean
 
 
 class Student(object):
 
-    __slots__ = ("_name", "_surname", "_record_book_number", "_grades")
+    __slots__ = ("_name", "_surname", "_record_book_number",
+                 "_grades", "_average_score")
 
     students_store = []
 
@@ -19,15 +21,12 @@ class Student(object):
         self._surname = surname
         self._record_book_number = record_book_number
         self._grades = grades
+        self._average_score = mean(grades)
         Student.students_store.append(f"{name} {surname}")
 
     def __repr__(self):
 
-        return f"""{self._name} {self._surname} - {self.get_average_score()}"""
-
-    def get_average_score(self):
-
-        return round(sum(self._grades) / len(self._grades), 2)
+        return f"""{self._name} {self._surname} - {self._average_score}"""
 
 
 class Group(object):
@@ -45,12 +44,18 @@ class Group(object):
             raise ValueError("Too many students")
         self.__students = students
 
+    def __str__(self):
+        return "\n".join([f"{elem._name} {elem._surname} {elem._average_score}"
+                          for elem in sorted(self.__students, reverse=True,
+                                             key=lambda x: x._average_score)])
+        # return  f"{user.name} {user.surname} - {use._average_score}"
+
     def get_5_most_successful(self):
 
         top_5_students = [
             elem
             for elem in sorted(self.__students, reverse=True,
-                               key=lambda x: x.get_average_score())[:5]
+                               key=lambda x: x._average_score)[:5]
         ]
         return top_5_students
 
@@ -79,7 +84,7 @@ student20 = Student("Andr", "Lidich", grades=[5, 3, 3, 3, 5, 3, 1, 5])
 res = [
     student1, student2, student3, student4, student5, student6, student7,
     student8, student9, student10, student11, student12, student13, student14,
-    student15, student16,  student17, student18, student19, student20
+    student15, student16, student17, student18, student19, student20
 ]
 
 gr = Group(res)
