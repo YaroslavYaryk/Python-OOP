@@ -42,19 +42,15 @@ class FileManager(object):
 
 	def count_words(self):
 
-		file = ""
 		with open(self.__file_name, "r", encoding=self.__encoding) as f:
-			file = f.read()
-		res = re.split(r"[, ]+", file)
-		return len(list(filter(lambda x: x, res)))
+			res = re.split(r"[, ]+", f.read())
+			return len(list(filter(lambda x: x, res)))
 
 	def count_sentences(self):
 
-		file = ""
 		with open(self.__file_name, "r", encoding=self.__encoding) as f:
-			file = f.read()
-		res = re.split(r"[.?!]+", file)
-		return len(list(filter(lambda x: x, res)))
+			res = re.split(r"[.?!]+", f.read())
+			return len(list(filter(lambda x: x, res)))
 
 	def count_special_character(self, symbol):
 		""" find count of special character. """
