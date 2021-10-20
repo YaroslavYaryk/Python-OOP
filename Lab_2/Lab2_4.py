@@ -80,14 +80,18 @@ with open("product_list.json", "r") as file:
 
 
 def main():
-    num = int(input("How many products? "))
-    result = 0
-    print("Code - (1 - 30)")
-    for i in range(num):
-        product_code, quantity =\
-            map(int, input("code : quantity:  ").split(" : "))
-        result += BinaryTree.get_product(product_code, quantity)
-    return result
+    try:
+        num = int(input("How many products? "))
+        result = 0
+        print("Code - (1 - 30)")
+        for i in range(num):
+            product_code, quantity =\
+                map(int, input("code : quantity:  ").split(" : "))
+            result += BinaryTree.get_product(product_code, quantity)
+        return result if result else 0
+    except ValueError as err:
+        print(err)
+        exit()
 
 
 print(f"Total price - {main()}$")

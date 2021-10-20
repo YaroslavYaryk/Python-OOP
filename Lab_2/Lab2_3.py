@@ -48,7 +48,6 @@ class Group(object):
         return "\n".join([f"{elem._name} {elem._surname} {elem._average_score}"
                           for elem in sorted(self.__students, reverse=True,
                                              key=lambda x: x._average_score)])
-        # return  f"{user.name} {user.surname} - {use._average_score}"
 
     def get_5_most_successful(self):
 
