@@ -20,6 +20,8 @@ class Student(object):
         self._name = name
         self._surname = surname
         self._record_book_number = record_book_number
+        if not all(isinstance(item, int) for item in grades):
+            raise TypeError("Grades must be int")
         self._grades = grades
         self._average_score = mean(grades)
         Student.students_store.append(f"{name} {surname}")
@@ -37,9 +39,6 @@ class Group(object):
         for student in students:
             if not isinstance(student, Student):
                 raise TypeError("student must be 'Student' type ")
-            for grade in student._grades:
-                if grade not in [1, 2, 3, 4, 5]:
-                    raise ValueError("Mark must be int type")
         if len(students) > 20:
             raise ValueError("Too many students")
         self.__students = students
