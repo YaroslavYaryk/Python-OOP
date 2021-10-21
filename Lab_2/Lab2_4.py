@@ -18,7 +18,7 @@ class Tree:
     def insert(self, value):
         """ insert value to the tree. """
 
-        if self.root is None:
+        if not self.root:
             self.root = Node(value)
         else:
             self._insert(value, self.root)
@@ -26,13 +26,13 @@ class Tree:
     def _insert(self, value, cur_node):
 
         if list(value.keys())[0] < list(cur_node.value.keys())[0]:
-            if cur_node.left is None:
+            if not cur_node.left:
                 cur_node.left = Node(value)
             else:
                 self._insert(value, cur_node.left)
 
         elif list(value.keys())[0] > list(cur_node.value.keys())[0]:
-            if cur_node.right is None:
+            if not cur_node.right:
                 cur_node.right = Node(value)
             else:
                 self._insert(value, cur_node.right)
@@ -43,7 +43,7 @@ class Tree:
     def search(self, value):
         """ find value in the tree. """
 
-        if self.root is not None:
+        if self.root:
             return self._search(value, self.root)
         else:
             return False

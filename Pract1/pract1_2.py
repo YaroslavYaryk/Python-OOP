@@ -11,7 +11,7 @@ class Rational:
             self.__numerator = numerator
             self.__denominator = denominator
         else:
-            raise ZeroDivision("denominator mustn't be zero")
+            raise ZeroDivisionError("denominator mustn't be zero")
 
     def __str__(self):
         return f"({self.__numerator}, {self.__denominator})"

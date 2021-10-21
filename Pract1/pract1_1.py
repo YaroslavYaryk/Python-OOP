@@ -2,11 +2,10 @@ class Rectangle():
 
     def __init__(self, lenth=1, width=1):
         if isinstance(lenth, (int, float)) and isinstance(width, (int, float)):
-            if lenth > 0 and width > 0:
-                self.__length = lenth
-                self.__width = width
-            else:
+            if not(lenth > 0 and width > 0):
                 raise ValueError("should be > 0")
+            self.__length = lenth
+            self.__width = width    
         else:
             raise TypeError("should be integer or float")
 
