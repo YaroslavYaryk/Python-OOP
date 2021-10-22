@@ -1,4 +1,4 @@
-class Product(object):
+class Product:
 
     __slots__ = ("_description", "_price", "_dimensions")
 
@@ -17,7 +17,7 @@ class Product(object):
             self._description + ' ' + str(self._dimensions) + " )"
 
 
-class Customer(object):
+class Customer:
 
     __slots__ = ("_surname", "_name", "_patronymic", "_mobile_phone")
 
@@ -36,7 +36,7 @@ class Customer(object):
 class Order(object):
 
     def __init__(self, customer=None, **kwargs):
-        if not (isinstance(customer, Customer) or customer is None):
+        if not (isinstance(customer, Customer) or not customer):
             raise TypeError("customer must be 'Customer' type.")
         self.__customer = customer
         for elem in kwargs:
@@ -46,7 +46,7 @@ class Order(object):
 
     def __str__(self):
         return """Customer:\n\t{surname} {name} {patronymic}
-        	\nFinal price\n\t{price}$"""\
+            \nFinal price\n\t{price}$"""\
                 .format(
             surname=self.__customer._surname if self.__customer else '',
             name=self.__customer._name if self.__customer else '',

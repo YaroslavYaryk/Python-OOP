@@ -1,59 +1,110 @@
 from pprint import pprint
+from re import T
 from statistics import mean
 
 
-class Student(object):
+class Student:
+    """Student class"""
 
-    __slots__ = ("_name", "_surname", "_record_book_number",
-                 "_grades", "_average_score")
-
-    students_store = []
+    __slots__ = ("__name", "__surname", "_record_book_number",
+                 "__grades", "_average_score")
 
     def __init__(self, name, surname, record_book_number=1, grades=list):
 
-        if f"{name} {surname}" in Student.students_store or \
-                f"{surname} {name}" in Student.students_store:
-            raise ValueError("student is already taken")
-
         if not isinstance(grades, list):
             raise TypeError("grades must be list type")
-        self._name = name
-        self._surname = surname
+        self.__name = name
+        self.__surname = surname
         self._record_book_number = record_book_number
         if not all(isinstance(item, int) for item in grades):
             raise TypeError("Grades must be int")
-        self._grades = grades
-        self._average_score = mean(grades)
-        Student.students_store.append(f"{name} {surname}")
+        self.__grades = grades
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def surname(self):
+        return self.__surname
+
+    @staticmethod
+    def __check_set_value(value):
+        """ check if value is correct """
+        if not isinstance(value, str):
+            raise TypeError("Wrong type of value")
+        if not value:
+            raise ValueError("Wrong Value")
+        return True
+
+    @name.setter
+    def name(self, value):
+        if Student.__check_set_value(value):
+            self.__name = value
+
+    @surname.setter
+    def surname(self, value):
+        if Student.__check_set_value(value):
+            self.__surname = value
+
+    @property
+    def grades(self):
+        return self.__grades
+
+    @grades.setter
+    def grades(self, grades):
+        if not isinstance(grades, list):
+            raise TypeError("Wrong type of grades")
+        if not all(isinstance(item, int) for item in grades):
+            raise TypeError("Grades must be int")
+        self.__grades = grades
+
+    def get_average_score(self):
+        return mean(self.__grades)
 
     def __repr__(self):
+        return f"{self.__name} {self.__surname} - {self.get_average_score()}"
 
-        return f"""{self._name} {self._surname} - {self._average_score}"""
+
+MAX_STUDENTS = 20
 
 
-class Group(object):
+class Group:
+    """Group class"""
+    students_store = []
 
     def __init__(self, students=list):
+
         if not isinstance(students, list):
             raise TypeError("students class must be list")
+
         for student in students:
+            if f"{student.name} {student.surname}" in \
+               Group.students_store or \
+                    f"{student.name} {student.name}" \
+               in Group.students_store:
+                raise ValueError("student is already taken")
+
+            Group.students_store.append(f"{student.name} {student.surname}")
+
             if not isinstance(student, Student):
                 raise TypeError("student must be 'Student' type ")
-        if len(students) > 20:
+        if len(students) > MAX_STUDENTS:
             raise ValueError("Too many students")
         self.__students = students
 
     def __str__(self):
-        return "\n".join([f"{elem._name} {elem._surname} {elem._average_score}"
-                          for elem in sorted(self.__students, reverse=True,
-                                             key=lambda x: x._average_score)])
+        return "\n".join(
+            [f"{elem.name} {elem.surname} {elem.get_average_score()}"
+             for elem in sorted(self.__students, reverse=True,
+                                key=lambda x: x.get_average_score())])
 
     def get_5_most_successful(self):
-
+        """return top 5 students"""
         top_5_students = [
             elem
             for elem in sorted(self.__students, reverse=True,
-                               key=lambda x: x._average_score)[:5]
+                               key=lambda x: x.get_average_score())[:5]
         ]
         return top_5_students
 

@@ -7,11 +7,10 @@ class Rational:
         if not (isinstance(numerator, int) and isinstance(denominator, int)):
             raise TypeError("Integers Only")
 
-        if denominator:
-            self.__numerator = numerator
-            self.__denominator = denominator
-        else:
+        if not denominator:
             raise ZeroDivisionError("denominator mustn't be zero")
+        self.__numerator = numerator
+        self.__denominator = denominator
 
     def __str__(self):
         return f"({self.__numerator}, {self.__denominator})"
@@ -20,7 +19,7 @@ class Rational:
     def reduce_fraction(n, m):
         # find greatest common factor of two integers
 
-        k = gcd(n, m)
+        k = int(gcd(n, m))
         return (n // k, m // k)
 
     def get_element_division(self):
@@ -43,7 +42,7 @@ class Rational:
                           gcd(self.__denominator, other.__denominator))
         numerator = int(denominator / self.__denominator * self.__numerator +
                         denominator / other.__denominator * other.__numerator)
-        result = Rational.reduce_fraction(int(numerator), int(denominator))
+        result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
     def __sub__(self, other):
@@ -55,7 +54,7 @@ class Rational:
                           gcd(self.__denominator, other.__denominator))
         numerator = int(denominator / self.__denominator * self.__numerator -
                         denominator / other.__denominator * other.__numerator)
-        result = Rational.reduce_fraction(int(numerator), int(denominator))
+        result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
     def __mul__(self, other):
@@ -65,7 +64,7 @@ class Rational:
 
         denominator = self.__denominator * other.__denominator
         numerator = self.__numerator * other.__numerator
-        result = Rational.reduce_fraction(int(numerator), int(denominator))
+        result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
     def __truediv__(self, other):
@@ -75,7 +74,7 @@ class Rational:
 
         denominator = self.__denominator * other.__numerator
         numerator = self.__numerator * other.__denominator
-        result = Rational.reduce_fraction(int(numerator), int(denominator))
+        result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
 

@@ -35,10 +35,7 @@ class Tree:
             if not cur_node.right:
                 cur_node.right = Node(value)
             else:
-                self._insert(value, cur_node.right)
-
-        else:
-            print(f"Value({value}) already in tree")
+                self._insert(value, cur_node.right) 
 
     def search(self, value):
         """ find value in the tree. """

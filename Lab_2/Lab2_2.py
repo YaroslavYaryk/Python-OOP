@@ -1,7 +1,7 @@
 import re
 
 
-class FileManager(object):
+class FileManager:
     """ class that has an info about file
     and its methods. """
 
@@ -10,6 +10,13 @@ class FileManager(object):
     def __init__(self, file_name, encoding="utf-8"):
         if not (isinstance(file_name, str) and isinstance(encoding, str)):
             raise TypeError("File name and encoding must be str type")
+        try:
+            with open(file_name, "r", encoding=encoding) as file:
+                pass
+        except (FileNotFoundError, FileExistsError):
+            raise FileNotFoundError("Not found")
+        except IOError:
+            raise IOError("Can't open file")
         self.__file_name = file_name
         self.__encoding = encoding
 
@@ -17,7 +24,8 @@ class FileManager(object):
         return f"FileManager - {self.__file_name}({self.__encoding})"
 
     @staticmethod
-    def __count_word(string, word):
+    def __count_word_in_text(string, word):
+        """ find count of special words on text """
         res = []
         if string[:len(word)] == word:
             res.append(0)
@@ -32,11 +40,8 @@ class FileManager(object):
 
     def get_text(self):
         """ get all file data. """
-        text = ""
         with open(self.__file_name, "r", encoding=self.__encoding) as file:
-            for i in file:
-                text += i
-            return len(text)
+            return file.read()
 
     def count_characters(self):
 
@@ -44,40 +49,30 @@ class FileManager(object):
             return len(f.read())
 
     def count_words(self):
-        words_counter = 0
         with open(self.__file_name, "r", encoding=self.__encoding) as file:
-            for i in file:
-                words_counter += len(list(filter(lambda x: x,
-                                                 re.split(r"[, ]+", i))))
-        return words_counter
+            return len(list(filter(lambda x: x,
+                                   re.split(r"[, ]+", file.read()))))
 
     def count_sentences(self):
 
-        sentence_counter = 0
         with open(self.__file_name, "r", encoding=self.__encoding) as file:
-            for i in file:
-                sentence_counter += len(list(filter(lambda x: x,
-                                                    re.split(r"[.?!]+", i))))
-            return sentence_counter
+            return len(list(filter(lambda x: x,
+                                   re.split(r"[.?!]+", file.read()))))
 
     def count_special_character(self, symbol):
         """ find count of special character. """
-        special_counter = 0
         with open(self.__file_name, "r", encoding=self.__encoding) as file:
-            for i in file:
-                special_counter += i.count(symbol)
-            return special_counter
+            return file.read().count(symbol)
 
     def find_position(self, word):
         """ find positions of 'word' in the file. """
         file_capacity = ""
         with open(self.__file_name, "r", encoding=self.__encoding) as file:
-            for i in file:
-                file_capacity += i
+            file_capacity = file.read()
         if len(word) == 1:
             return [i for i in range(len(file_capacity))
                     if file_capacity[i] == word]
-        return FileManager.__count_word(file_capacity, word)
+        return FileManager.__count_word_in_text(file_capacity, word)
 
     def write_smth_to_file(self, text):
         with open(self.__file_name, "w", encoding=self.__encoding) as f:
