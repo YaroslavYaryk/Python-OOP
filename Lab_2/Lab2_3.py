@@ -2,6 +2,7 @@ from pprint import pprint
 from re import T
 from statistics import mean
 
+GRADES = [1,2,3,4,5]
 
 class Student:
     """Student class"""
@@ -18,7 +19,13 @@ class Student:
         self._record_book_number = record_book_number
         if not all(isinstance(item, int) for item in grades):
             raise TypeError("Grades must be int")
+        if not (len(grades) == len(list(filter(Student.check_is_correct_grade, grades)))):
+            raise ValueError ("Grades are not correct")
         self.__grades = grades
+
+    @staticmethod
+    def check_is_correct_grade(value):
+        return value in GRADES
 
     @property
     def name(self):
@@ -93,6 +100,23 @@ class Group:
             raise ValueError("Too many students")
         self.__students = students
 
+
+    @property   
+    def students(self):
+        return  self.__students 
+ 
+
+    @students.setter
+    def students(self, value):
+        if not (isinstance(value, (list, tuple)) or all(isinstance(item, Student) for item in value)):
+            raise TypeError("student must be Student instance")        
+        self.__students = value  
+
+    def add_student(self, value):
+        if not isinstance(value, Student):
+            raise TypeError("student must be Student instance")        
+        self.__students.append(value)
+
     def __str__(self):
         return "\n".join(
             [f"{elem.name} {elem.surname} {elem.get_average_score()}"
@@ -101,12 +125,10 @@ class Group:
 
     def get_5_most_successful(self):
         """return top 5 students"""
-        top_5_students = [
-            elem
-            for elem in sorted(self.__students, reverse=True,
-                               key=lambda x: x.get_average_score())[:5]
-        ]
-        return top_5_students
+
+        self.__students.sort(reverse=True,
+                               key=lambda x: x.get_average_score())
+        return self.__students[:5]
 
 
 student1 = Student("Yaroslav", "Dyhanov", grades=[5, 5, 4, 4, 5, 3, 4, 5])
@@ -128,13 +150,19 @@ student16 = Student("Seryl", "Peshko", grades=[5, 2, 2, 4, 5, 3, 4, 5])
 student17 = Student("Yaroslavchik", "Dyhanov", grades=[5, 5, 5, 4, 5, 3, 4, 5])
 student18 = Student("Rozma", "Bosyk", grades=[3, 3, 4, 4, 5, 3, 2, 5])
 student19 = Student("Vova", "Teliuk", grades=[5, 5, 2, 5, 5, 5, 4, 5])
-student20 = Student("Andr", "Lidich", grades=[5, 3, 3, 3, 5, 3, 1, 5])
 
 res = [
     student1, student2, student3, student4, student5, student6, student7,
     student8, student9, student10, student11, student12, student13, student14,
-    student15, student16, student17, student18, student19, student20
+    student15, student16, student17, student18, student19
 ]
 
+stud = Student("Seryl", "Peshko", grades=[5, 5, 5, 5, 5, 5, 5, 5])
+
 gr = Group(res)
+
+gr.add_student(stud)
+
+
 pprint(gr.get_5_most_successful())
+

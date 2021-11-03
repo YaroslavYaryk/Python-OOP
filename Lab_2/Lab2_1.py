@@ -16,7 +16,6 @@ class Product:
         return "Product( " + str(self._price) + ' ' +\
             self._description + ' ' + str(self._dimensions) + " )"
 
-
 class Customer:
 
     __slots__ = ("_surname", "_name", "_patronymic", "_mobile_phone")
