@@ -1,0 +1,46 @@
+[
+    {
+        "be8df8b0-4243-11ec-b931-6bb740bc2950": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "is_student": false,
+            "price": 60.0,
+            "purchase_date": "2021-11-10",
+            "event_date": "2022-01-31",
+            "days_to_event": 82
+        }
+    },
+    {
+        "d4b1506a-4243-11ec-b931-6bb740bc2950": {
+            "name": "Humpty",
+            "surname": "Dumpty",
+            "is_student": true,
+            "price": 50.0,
+            "purchase_date": "2021-11-10",
+            "event_date": "2021-12-31",
+            "days_to_event": 51
+        }
+    },
+    {
+        "ec802914-4243-11ec-b931-6bb740bc2950": {
+            "name": "Hupty",
+            "surname": "Rapty",
+            "is_student": false,
+            "price": 100,
+            "purchase_date": "2021-11-10",
+            "event_date": "2021-11-21",
+            "days_to_event": 11
+        }
+    },
+    {
+        "1926d2d8-4244-11ec-b931-6bb740bc2950": {
+            "name": "Kiker",
+            "surname": "Posh",
+            "is_student": false,
+            "price": 110.0,
+            "purchase_date": "2021-11-10",
+            "event_date": "2021-11-15",
+            "days_to_event": 5
+        }
+    }
+]
