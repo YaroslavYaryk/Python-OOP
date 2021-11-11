@@ -64,6 +64,10 @@ class Customer:
 
     def __init__(self, name, surname, is_student):
 
+        if not all(isinstance(i, str) for i in [name, surname]):
+            raise TypeError("Name and Surname must be String type")
+        if not isinstance(is_student, bool):
+            raise TypeError("Is_student must be Bool type")    
         self.__name = name
         self.__surname = surname
         self.__is_student = is_student
@@ -182,6 +186,9 @@ class Order:
 
     def search_ticket_by_ticked_id(self, ticket_id):
 
+        if not isinstance(ticket_id, str):
+            raise TypeError("ticket_id must be Sting type")
+
         with open("ticket_storage.json") as file:
             ticket_storage = json.load(file)
             for ticket in ticket_storage:
@@ -191,8 +198,6 @@ class Order:
                     return None
 
 
-a = LateTicket()
-print(a.get_ticket_price())
 
 cust1 = Customer("Yaroslav", "Dyhanov", False)
 cust2 = Customer("Humpty", "Dumpty", True)
