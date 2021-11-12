@@ -1,7 +1,7 @@
 import uuid
 from datetime import date
 import json
-from tools import DATE_OF_EVENT, DISCOUNT_ADVANCED, DISCOUNT_LATE, DISCOUNT_STUDENT, TICKET_NUMBER
+from tools import BASE_PRICE, DATE_OF_EVENT, DISCOUNT_ADVANCED, DISCOUNT_LATE, DISCOUNT_STUDENT, TICKET_NUMBER
 
 
 class RegularTicket:
@@ -9,7 +9,7 @@ class RegularTicket:
 
     def __init__(self):
         self._id = uuid.uuid1()
-        self._price = 100
+        self._price = BASE_PRICE
 
     @property
     def price(self):
@@ -128,7 +128,7 @@ class Order:
             return StudentTicket()
         elif days in range(11):
             return LateTicket()
-        elif days > 60:
+        elif days > DISCOUNT_ADVANCED:
             return AdvanceTicket()
         else:
             return RegularTicket()
