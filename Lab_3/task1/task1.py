@@ -11,7 +11,8 @@ class RegularTicket:
         self._id = uuid.uuid1()
         self._price = 100
 
-    def get_ticket_price(self):
+    @property
+    def price(self):
         return self._price
 
     def get_ticket_string(self):
@@ -191,7 +192,6 @@ class Order:
                     if self.__check_ticket_customer_info(ticket, ticket_id):
                         return Order.__get_all_info_about_ticket(ticket)
                     return None
-
 
 
 cust1 = Customer("Yaroslav", "Dyhanov", False)
