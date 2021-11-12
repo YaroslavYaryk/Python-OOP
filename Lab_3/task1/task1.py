@@ -16,10 +16,10 @@ class RegularTicket:
         return self._price
 
     def get_ticket_string(self):
-        return f"Ticket( {self._id} - {self._price} )"
+        return f"Ticket( {self._id} - {self.price} )"
 
     def __str__(self):
-        return f"RegularTicket({self._id}) - ${self._price}"
+        return f"RegularTicket({self._id}) - ${self.price}"
 
 
 class AdvanceTicket(RegularTicket):
@@ -28,10 +28,13 @@ class AdvanceTicket(RegularTicket):
 
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-DISCOUNT_ADVANCED)/100
+        
+    @property
+    def price(self):
+        return self._price*(100-DISCOUNT_ADVANCED)/100     
 
     def __str__(self):
-        return f"AdvanceTicket({self._id}) - ${self._price}"
+        return f"AdvanceTicket({self._id}) - ${self.price}"
 
 
 class LateTicket(RegularTicket):
@@ -39,20 +42,27 @@ class LateTicket(RegularTicket):
 
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-DISCOUNT_LATE)/100
+
+    @property
+    def price(self):
+        return self._price*(100-DISCOUNT_LATE)/100   
 
     def __str__(self):
-        return f"LateTicket({self._id}) - ${self._price}"
+        return f"LateTicket({self._id}) - ${self.price}"
 
 
 class StudentTicket(RegularTicket):
 
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-DISCOUNT_STUDENT)/100
+
+    @property
+    def price(self):
+        return self._price*(100-DISCOUNT_STUDENT)/100   
+    
 
     def __str__(self):
-        return f"StudentTicket({self._id}) - ${self._price}"
+        return f"StudentTicket({self._id}) - ${self.price}"
 
 
 class Customer:
@@ -131,7 +141,7 @@ class Order:
         storage[str(ticket._id)]["name"] = self.__customer.name
         storage[str(ticket._id)]["surname"] = self.__customer.surname
         storage[str(ticket._id)]["is_student"] = self.__customer.is_student
-        storage[str(ticket._id)]["price"] = ticket._price
+        storage[str(ticket._id)]["price"] = ticket.price
         storage[str(ticket._id)]["purchase_date"] = str(date.today())
         storage[str(ticket._id)]["event_date"] = str(DATE_OF_EVENT)
         storage[str(ticket._id)]["days_to_event"] = days_to_event
@@ -192,6 +202,7 @@ class Order:
                     if self.__check_ticket_customer_info(ticket, ticket_id):
                         return Order.__get_all_info_about_ticket(ticket)
                     return None
+
 
 
 cust1 = Customer("Yaroslav", "Dyhanov", False)
