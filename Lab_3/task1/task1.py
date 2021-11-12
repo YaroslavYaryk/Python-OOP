@@ -1,7 +1,7 @@
 import uuid
 from datetime import date
 import json
-from tools import DATE_OF_EVENT, TICKET_NUMBER
+from tools import DATE_OF_EVENT, DISCOUNT_ADVANCED, DISCOUNT_LATE, DISCOUNT_STUDENT, TICKET_NUMBER
 
 
 class RegularTicket:
@@ -24,11 +24,10 @@ class RegularTicket:
 class AdvanceTicket(RegularTicket):
     """advance ticket (purchased 60 or more days before the event)"""
 
-    discount = 40
 
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-AdvanceTicket.discount)/100
+        self._price = self._price*(100-DISCOUNT_ADVANCED)/100
 
     def __str__(self):
         return f"AdvanceTicket({self._id}) - ${self._price}"
@@ -37,11 +36,9 @@ class AdvanceTicket(RegularTicket):
 class LateTicket(RegularTicket):
     """ late ticket (purchased fewer than 10 days before the event) """
 
-    discount = -10
-
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-LateTicket.discount)/100
+        self._price = self._price*(100-DISCOUNT_LATE)/100
 
     def __str__(self):
         return f"LateTicket({self._id}) - ${self._price}"
@@ -49,11 +46,9 @@ class LateTicket(RegularTicket):
 
 class StudentTicket(RegularTicket):
 
-    discount = 50
-
     def __init__(self):
         super().__init__()
-        self._price = self._price*(100-StudentTicket.discount)/100
+        self._price = self._price*(100-DISCOUNT_STUDENT)/100
 
     def __str__(self):
         return f"StudentTicket({self._id}) - ${self._price}"
@@ -211,8 +206,8 @@ order3 = Order(customer=cust3)
 order4 = Order(customer=cust4)
 
 
-# print(order1.search_ticket_by_ticked_id(
-#     "be8df8b0-4243-11ec-b931-6bb740bc2950"))  # True id
+print(order1.search_ticket_by_ticked_id(
+    "be8df8b0-4243-11ec-b931-6bb740bc2950"))  # True id
 # print(order1.search_ticket_by_ticked_id(
 #     "be8df8b0-4243-1s1ec-b931-6bb740bc2950"))  # False id
 # print(order2.search_ticket_by_ticked_id(
