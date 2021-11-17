@@ -1,0 +1,123 @@
+[
+  {"Monday":{
+      "name": "Hawaiian pizza",
+      "price": 175,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "bbq sauce": 250,
+        "cheese": 150,
+        "mushrooms": 150,
+        "tomato": 150,
+        "ham": 150,
+        "onion": 50
+      }
+    }
+  },
+  {"Tuesday":{
+      "name": "Chicago pizza",
+      "price": 125,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "pizza sauce": 250,
+        "cheese": 150,
+        "pineapple pieces": 150,
+        "chicken": 150
+      }
+    }
+  },
+  {"Wednesday":{
+      "name": "Ukrainian pizza",
+      "price": 95,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "bbq sauce": 250,
+        "cheese": 150,
+        "mushrooms": 150,
+        "tomato": 150,
+        "chicken": 150,
+        "onion": 50
+      }
+    }
+  },
+  {"Thursday":{
+      "name": "Combo pizza",
+      "price": 100,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "pizza sauce": 250,
+        "cheese": 150,
+        "mushrooms": 150,
+        "tomato": 150,
+        "chicken": 150,
+        "onion": 40
+      }
+    }
+  },
+  {"Friday":{
+      "name": "Roland pizza",
+      "price": 200,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "tomato paste": 250,
+        "mushrooms": 150,
+        "cheese": 150,
+        "pizza sauce": 50,
+        "chicken": 150,
+        "pepperoni": 150
+      }
+    }
+  },
+  {"Saturday":{
+      "name": "Lion pizza",
+      "price": 150,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "tomato paste": 250,
+        "cheese": 150,
+        "pepperoni": 300
+      }
+    }
+  },
+  {"Sunday":{
+      "name": "Hrono pizza",
+      "price": 175,
+      "ingredients": {
+        "sachet dried yeast": 7,
+        "lukewarm water": 250,
+        "plain flour": 400,
+        "salt": 7,
+        "olive oil": 60,
+        "bbq sauce": 250,
+        "cheese": 150,
+        "mushrooms": 150,
+        "tomato": 150,
+        "ham": 150,
+        "onion": 50
+      }
+    }
+  }
+]

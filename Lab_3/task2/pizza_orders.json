@@ -1,0 +1,125 @@
+[
+    {
+        "6db1debc-478f-11ec-8869-0971039095e6": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "pizza_name": "Ukrainian pizza",
+            "ingredients": {
+                "sachet dried yeast": 7,
+                "lukewarm water": 250,
+                "plain flour": 400,
+                "salt": 7,
+                "olive oil": 60,
+                "bbq sauce": 250,
+                "cheese": 150,
+                "mushrooms": 150,
+                "tomato": 150,
+                "chicken": 150,
+                "onion": 50
+            },
+            "aditionsl_ingredients": {},
+            "price": 95,
+            "purchase day": "Wednesday"
+        }
+    },
+    {
+        "8287c310-478f-11ec-8869-0971039095e6": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "pizza_name": "Ukrainian pizza",
+            "ingredients": {
+                "sachet dried yeast": 7,
+                "lukewarm water": 250,
+                "plain flour": 400,
+                "salt": 7,
+                "olive oil": 60,
+                "bbq sauce": 250,
+                "cheese": 150,
+                "mushrooms": 150,
+                "tomato": 150,
+                "chicken": 150,
+                "onion": 50
+            },
+            "aditionsl_ingredients": {
+                "apple": 130
+            },
+            "price": 95,
+            "purchase day": "Wednesday"
+        }
+    },
+    {
+        "d7020b6c-47ab-11ec-8869-0971039095e6": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "pizza_name": "Ukrainian pizza",
+            "ingredients": {
+                "sachet dried yeast": 7,
+                "lukewarm water": 250,
+                "plain flour": 400,
+                "salt": 7,
+                "olive oil": 60,
+                "bbq sauce": 250,
+                "cheese": 150,
+                "mushrooms": 150,
+                "tomato": 150,
+                "chicken": 150,
+                "onion": 50
+            },
+            "aditionsl_ingredients": {
+                "apple": 130
+            },
+            "price": 95,
+            "purchase day": "Wednesday"
+        }
+    },
+    {
+        "7c815958-47ac-11ec-8869-0971039095e6": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "pizza_name": "Hawaiian pizza",
+            "ingredients": {
+                "sachet dried yeast": 7,
+                "lukewarm water": 250,
+                "plain flour": 400,
+                "salt": 7,
+                "olive oil": 60,
+                "bbq sauce": 250,
+                "cheese": 150,
+                "mushrooms": 150,
+                "tomato": 150,
+                "ham": 150,
+                "onion": 50
+            },
+            "aditionsl_ingredients": {
+                "orange": 90
+            },
+            "price": 175,
+            "purchase day": "Monday"
+        }
+    },
+    {
+        "d26749ba-47af-11ec-8869-0971039095e6": {
+            "name": "Yaroslav",
+            "surname": "Dyhanov",
+            "pizza_name": "Ukrainian pizza",
+            "ingredients": {
+                "sachet dried yeast": 7,
+                "lukewarm water": 250,
+                "plain flour": 400,
+                "salt": 7,
+                "olive oil": 60,
+                "bbq sauce": 250,
+                "cheese": 150,
+                "mushrooms": 150,
+                "tomato": 150,
+                "chicken": 150,
+                "onion": 50
+            },
+            "aditionsl_ingredients": {
+                "orange": 90
+            },
+            "price": 95,
+            "purchase day": "Wednesday"
+        }
+    }
+]

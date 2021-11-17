@@ -31,7 +31,7 @@ class AdvanceTicket(RegularTicket):
         
     @property
     def price(self):
-        return self._price*(100-DISCOUNT_ADVANCED)/100     
+        return self._price*(BASE_PRICE-DISCOUNT_ADVANCED)/100     
 
     def __str__(self):
         return f"AdvanceTicket({self._id}) - ${self.price}"
@@ -45,7 +45,7 @@ class LateTicket(RegularTicket):
 
     @property
     def price(self):
-        return self._price*(100-DISCOUNT_LATE)/100   
+        return self._price*(BASE_PRICE-DISCOUNT_LATE)/100   
 
     def __str__(self):
         return f"LateTicket({self._id}) - ${self.price}"
@@ -58,7 +58,7 @@ class StudentTicket(RegularTicket):
 
     @property
     def price(self):
-        return self._price*(100-DISCOUNT_STUDENT)/100   
+        return self._price*(BASE_PRICE-DISCOUNT_STUDENT)/100   
     
 
     def __str__(self):
