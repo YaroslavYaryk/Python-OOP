@@ -3,12 +3,15 @@ from pprint import pprint
 from datetime import date, datetime
 import uuid
 
+PIZZA_STORAGE = "pizza_storage.json"
+PIZZA_ORDERS = "pizza_orders.json"
+ADITIONAL_INGREDIENTS = "aditional_ingredients.json"
 
 class RegularPizza:
     """ pizza base class """
 
     def __init__(self):
-        with open("pizza_storage.json") as file:
+        with open(PIZZA_STORAGE) as file:
             self._pizza_storage = json.load(file) 
     
     def get_pizza_price(self):
@@ -119,7 +122,7 @@ class Order:
 
         if not isinstance(ingredients, dict):
             raise TypeError("ingredients_list must be dict type")    
-        with open("aditional_ingredients.json") as file:
+        with open(ADITIONAL_INGREDIENTS) as file:
             avaluable_ingredients = json.load(file)
         for element in ingredients:
             if not avaluable_ingredients.get(element):
@@ -133,7 +136,7 @@ class Order:
 
             avaluable_ingredients[element] -= ingredients[element]    
 
-        with open("aditional_ingredients.json", "w") as file:
+        with open(ADITIONAL_INGREDIENTS, "w") as file:
             json.dump(avaluable_ingredients, file)
 
         return ingredients
@@ -173,11 +176,11 @@ class Order:
 
         checked_aditional_products = self.add_aditional_ingredients(aditional_products)
 
-        with open("pizza_orders.json") as file:
+        with open(PIZZA_ORDERS) as file:
             storg = json.load(file)
             storg.append(self.__build_pizza_by_info(order_date_day, pizza, checked_aditional_products))
 
-        with open("pizza_orders.json", "w") as file:
+        with open(PIZZA_ORDERS, "w") as file:
             json.dump(storg, file)
 
 
