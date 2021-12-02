@@ -2,7 +2,6 @@ from math import gcd
 
 
 class Rational:
-
     def __init__(self, numerator=1, denominator=1):
         if not (isinstance(numerator, int) and isinstance(denominator, int)):
             raise TypeError("Integers Only")
@@ -23,13 +22,12 @@ class Rational:
         return (n // k, m // k)
 
     def get_element_division(self):
-        """ print cool rational type """
+        """print cool rational type"""
 
-        return f'{self.__numerator}/{self.__denominator}' \
-            if self.__numerator else "0"
+        return f"{self.__numerator}/{self.__denominator}" if self.__numerator else "0"
 
     def get_result_division(self):
-        """ show result of rational expression """
+        """show result of rational expression"""
 
         return f"{round(self.__numerator / self.__denominator,3)}"
 
@@ -38,10 +36,15 @@ class Rational:
         if not isinstance(other, Rational):
             raise TypeError("should be Rational type")
 
-        denominator = int(self.__denominator * other.__denominator /
-                          gcd(self.__denominator, other.__denominator))
-        numerator = int(denominator / self.__denominator * self.__numerator +
-                        denominator / other.__denominator * other.__numerator)
+        denominator = int(
+            self.__denominator
+            * other.__denominator
+            / gcd(self.__denominator, other.__denominator)
+        )
+        numerator = int(
+            denominator / self.__denominator * self.__numerator
+            + denominator / other.__denominator * other.__numerator
+        )
         result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
@@ -50,10 +53,15 @@ class Rational:
         if not isinstance(other, Rational):
             raise TypeError("sould be Rational type")
 
-        denominator = int(self.__denominator * other.__denominator /
-                          gcd(self.__denominator, other.__denominator))
-        numerator = int(denominator / self.__denominator * self.__numerator -
-                        denominator / other.__denominator * other.__numerator)
+        denominator = int(
+            self.__denominator
+            * other.__denominator
+            / gcd(self.__denominator, other.__denominator)
+        )
+        numerator = int(
+            denominator / self.__denominator * self.__numerator
+            - denominator / other.__denominator * other.__numerator
+        )
         result = Rational.reduce_fraction((numerator), (denominator))
         return Rational(result[0], result[1])
 
@@ -96,19 +104,19 @@ def main():
     a = Rational(3, 9)
     b = Rational(3, 9)
     c = a / b
-    assert c.get_element_division() == '1/1'
+    assert c.get_element_division() == "1/1"
     print(c, end="\n\n")
 
     c = a * b
-    assert c.get_element_division() == '1/9'
+    assert c.get_element_division() == "1/9"
     print(c, end="\n\n")
 
     c = a + b
-    assert c.get_element_division() == '2/3'
+    assert c.get_element_division() == "2/3"
     print(c, end="\n\n")
 
     c = a - b
-    assert c.get_element_division() == '0'
+    assert c.get_element_division() == "0"
     print(c, end="\n\n")
 
 

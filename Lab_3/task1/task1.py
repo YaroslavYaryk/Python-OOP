@@ -1,11 +1,18 @@
 import uuid
 from datetime import date
 import json
-from tools import BASE_PRICE, DATE_OF_EVENT, DISCOUNT_ADVANCED, DISCOUNT_LATE, DISCOUNT_STUDENT, TICKET_NUMBER
+from tools import (
+    BASE_PRICE,
+    DATE_OF_EVENT,
+    DISCOUNT_ADVANCED,
+    DISCOUNT_LATE,
+    DISCOUNT_STUDENT,
+    TICKET_NUMBER,
+)
 
 
 class RegularTicket:
-    """ base ticket class """
+    """base ticket class"""
 
     def __init__(self):
         self._id = uuid.uuid1()
@@ -25,55 +32,52 @@ class RegularTicket:
 class AdvanceTicket(RegularTicket):
     """advance ticket (purchased 60 or more days before the event)"""
 
-
     def __init__(self):
         super().__init__()
-        
+
     @property
     def price(self):
-        return self._price*(BASE_PRICE-DISCOUNT_ADVANCED)/100     
+        return self._price * (BASE_PRICE - DISCOUNT_ADVANCED) / 100
 
     def __str__(self):
         return f"AdvanceTicket({self._id}) - ${self.price}"
 
 
 class LateTicket(RegularTicket):
-    """ late ticket (purchased fewer than 10 days before the event) """
+    """late ticket (purchased fewer than 10 days before the event)"""
 
     def __init__(self):
         super().__init__()
 
     @property
     def price(self):
-        return self._price*(BASE_PRICE-DISCOUNT_LATE)/100   
+        return self._price * (BASE_PRICE - DISCOUNT_LATE) / 100
 
     def __str__(self):
         return f"LateTicket({self._id}) - ${self.price}"
 
 
 class StudentTicket(RegularTicket):
-
     def __init__(self):
         super().__init__()
 
     @property
     def price(self):
-        return self._price*(BASE_PRICE-DISCOUNT_STUDENT)/100   
-    
+        return self._price * (BASE_PRICE - DISCOUNT_STUDENT) / 100
 
     def __str__(self):
         return f"StudentTicket({self._id}) - ${self.price}"
 
 
 class Customer:
-    """ class of customer """
+    """class of customer"""
 
     def __init__(self, name, surname, is_student):
 
         if not all(isinstance(i, str) for i in [name, surname]):
             raise TypeError("Name and Surname must be String type")
         if not isinstance(is_student, bool):
-            raise TypeError("Is_student must be Bool type")    
+            raise TypeError("Is_student must be Bool type")
         self.__name = name
         self.__surname = surname
         self.__is_student = is_student
@@ -110,7 +114,6 @@ class Customer:
 
 
 class Order:
-
     def __init__(self, customer):
 
         if not isinstance(customer, Customer):
@@ -134,7 +137,7 @@ class Order:
             return RegularTicket()
 
     def __build_ticket_by_info(self, days_to_event, ticket):
-        """ build ticket by student and ticket_data """
+        """build ticket by student and ticket_data"""
 
         storage = {}
         storage[str(ticket._id)] = {}
@@ -166,9 +169,11 @@ class Order:
 
     def __check_ticket_customer_info(self, ticket, ticket_id):
 
-        if ticket[ticket_id]["name"] == self.__customer.name and\
-            ticket[ticket_id]["surname"] == self.__customer.surname and \
-                ticket[ticket_id]["is_student"] == self.__customer.is_student:
+        if (
+            ticket[ticket_id]["name"] == self.__customer.name
+            and ticket[ticket_id]["surname"] == self.__customer.surname
+            and ticket[ticket_id]["is_student"] == self.__customer.is_student
+        ):
 
             return True
 
@@ -183,11 +188,11 @@ class Order:
         event_date = ticket[ticket_id]["event_date"]
 
         return (
-            f'\nTicket for: {name} {surname}\n'
-            f'Is_student: {is_student}\n'
-            f'Price: {price}\n'
-            f'Purchase_date: {purchase_date}\n'
-            f'Event_date: {event_date}\n'
+            f"\nTicket for: {name} {surname}\n"
+            f"Is_student: {is_student}\n"
+            f"Price: {price}\n"
+            f"Purchase_date: {purchase_date}\n"
+            f"Event_date: {event_date}\n"
         )
 
     def search_ticket_by_ticked_id(self, ticket_id):
@@ -204,7 +209,6 @@ class Order:
                     return None
 
 
-
 cust1 = Customer("Yaroslav", "Dyhanov", False)
 cust2 = Customer("Humpty", "Dumpty", True)
 cust3 = Customer("Hupty", "Rapty", False)
@@ -217,8 +221,9 @@ order3 = Order(customer=cust3)
 order4 = Order(customer=cust4)
 
 
-print(order1.search_ticket_by_ticked_id(
-    "be8df8b0-4243-11ec-b931-6bb740bc2950"))  # True id
+print(
+    order1.search_ticket_by_ticked_id("be8df8b0-4243-11ec-b931-6bb740bc2950")
+)  # True id
 # print(order1.search_ticket_by_ticked_id(
 #     "be8df8b0-4243-1s1ec-b931-6bb740bc2950"))  # False id
 # print(order2.search_ticket_by_ticked_id(
