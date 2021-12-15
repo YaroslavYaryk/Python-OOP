@@ -3,13 +3,31 @@ from math import gcd
 
 class Rational:
     def __init__(self, numerator=1, denominator=1):
-        if not (isinstance(numerator, int) and isinstance(denominator, int)):
-            raise TypeError("Integers Only")
+        
+        self.numerator = numerator
+        self.denominator = denominator
 
-        if not denominator:
-            raise ZeroDivisionError("denominator mustn't be zero")
-        self.__numerator = numerator
-        self.__denominator = denominator
+    @property
+    def numerator(self):
+        return self.__numerator
+
+    @numerator.setter
+    def numerator(self, value):
+        if not isinstance(value, int):
+            raise TypeError("must be int")
+        self.__numerator = value
+
+    @property
+    def denominator(self):
+        return self.__denominator
+
+    @denominator.setter
+    def denominator(self, value):
+        if not isinstance(value, int):
+            raise TypeError("must be int")
+        if not value:
+            raise ZeroDivisionError()
+        self.__numerator = value
 
     def __str__(self):
         return f"({self.__numerator}, {self.__denominator})"
@@ -173,28 +191,15 @@ class Rational:
 
 def main():
     a = Rational()
-    # print(a.get_result_division())
-    # print(a, end="\n\n")
-
-    # b = Rational(121, 11)
-    # print(b, end="\n\n")
-
-    # c = Rational("dasad")
-    # print(b, end="\n\n")
 
     a = Rational(3, 9)
-    # b = Rational(3, 9)
-    # c = a / b
-    # print(c, end="\n\n")
-
-    # c = a * b
-    # print(c, end="\n\n")
 
     a *= 2
     print(a, end="\n\n")
 
-    # c = a - b
-    # print(c, end="\n\n")
+    a *= Rational(3, 9)
+
+    print(a, end="\n\n")
 
 
 main()

@@ -1,5 +1,5 @@
-# from task2_storage import SPECIAL_YEARS
 from calendar import monthrange
+
 
 class Date:
     def __init__(self, days, months, years):
@@ -89,7 +89,7 @@ class Calendar:
 
     @staticmethod
     def __change_date_add(calendar_object):
-        """ change add date in case if it wrong """
+        """change add date in case if it wrong"""
         if calendar_object.month > 12:
             calendar_object.year += 1
             calendar_object.month %= 12
@@ -101,7 +101,7 @@ class Calendar:
             calendar_object.month += 1
             try:
                 calendar_object.day %= monthrange(
-                    calendar_object.year, calendar_object.month-1
+                    calendar_object.year, calendar_object.month - 1
                 )[1]
             except Exception:
                 calendar_object.month %= 12
@@ -110,7 +110,7 @@ class Calendar:
 
     @staticmethod
     def __change_date_sub(calendar_object):
-        """ change sub date in case if it wrong """
+        """change sub date in case if it wrong"""
         if calendar_object.month <= 0:
             calendar_object.year -= 1
             calendar_object.month += 12
@@ -128,7 +128,7 @@ class Calendar:
 
     @staticmethod
     def __get_added_date(calendar_object):
-        """ get completed added date """
+        """get completed added date"""
         if (
             calendar_object.month > 12
             or monthrange(calendar_object.year, calendar_object.month)[1]
@@ -142,7 +142,7 @@ class Calendar:
 
     @staticmethod
     def __get_subed_date(calendar_object):
-        """ get completed subed date """
+        """get completed subed date"""
         if calendar_object.month <= 0 or calendar_object.day <= 0:
             return Calendar.__get_subed_date(
                 Calendar.__change_date_sub(calendar_object)
