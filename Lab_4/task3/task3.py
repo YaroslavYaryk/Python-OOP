@@ -9,16 +9,16 @@ TEACHER_STORAGE = "teacher_schedule.json"
 class ITeacher(ABC):
     @abstractmethod
     def get_my_courses(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     @abstractmethod
     def name(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @abstractmethod
     def __str__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class Teacher(ITeacher):
@@ -48,34 +48,34 @@ class Teacher(ITeacher):
 class ICourse(ABC):
     @abstractmethod
     def build_couse(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @abstractmethod
     def save_course(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @abstractmethod
     def add_cours_to_teacher_schedule(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     @abstractmethod
     def name(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     @abstractmethod
     def program(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     @abstractmethod
     def teacher(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @abstractmethod
     def __str__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class Course(ICourse):
@@ -157,7 +157,7 @@ class ILocalCourse(ABC):
     @property
     @abstractmethod
     def laboratory(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class LocalCourse(Course, ILocalCourse):
@@ -187,7 +187,7 @@ class IOffsiteCourse(ABC):
     @property
     @abstractmethod
     def place(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class OffsiteCourse(Course, IOffsiteCourse):
@@ -216,7 +216,7 @@ class OffsiteCourse(Course, IOffsiteCourse):
 class ICourseFactory(ABC):
     @abstractmethod
     def __str__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class CourseFactory:
