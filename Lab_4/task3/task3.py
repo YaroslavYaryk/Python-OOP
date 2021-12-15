@@ -9,21 +9,24 @@ TEACHER_STORAGE = "teacher_schedule.json"
 class ITeacher(ABC):
     @abstractmethod
     def get_my_courses(self):
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
     def name(self):
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def __str__(self):
-        raise NotImplementedError
+        pass
 
 
 class Teacher(ITeacher):
     def __init__(self, name):
         self.__name = name
+        self.__count_courses = (
+            len(self.get_my_courses()[0]) if len(self.get_my_courses()) else 0
+        )
 
     @property
     def name(self):
@@ -42,40 +45,40 @@ class Teacher(ITeacher):
         return [elem[self.__name] for elem in stor if elem.get(self.__name)]
 
     def __str__(self):
-        return f"Teacher(name={self.name}, number_of_courses={len(self.get_my_courses()[0])})"
+        return f"Teacher(name={self.name}, number_of_courses={self.__count_courses})"
 
 
 class ICourse(ABC):
     @abstractmethod
     def build_couse(self):
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def save_course(self):
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def add_cours_to_teacher_schedule(self):
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
     def name(self):
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
     def program(self):
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
     def teacher(self):
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def __str__(self):
-        raise NotImplementedError
+        pass
 
 
 class Course(ICourse):
@@ -157,7 +160,7 @@ class ILocalCourse(ABC):
     @property
     @abstractmethod
     def laboratory(self):
-        raise NotImplementedError
+        pass
 
 
 class LocalCourse(Course, ILocalCourse):
@@ -187,7 +190,7 @@ class IOffsiteCourse(ABC):
     @property
     @abstractmethod
     def place(self):
-        raise NotImplementedError
+        pass
 
 
 class OffsiteCourse(Course, IOffsiteCourse):
@@ -215,8 +218,24 @@ class OffsiteCourse(Course, IOffsiteCourse):
 
 class ICourseFactory(ABC):
     @abstractmethod
-    def __str__(self):
-        raise NotImplementedError
+    def add_teacher(self):
+        pass
+
+    @abstractmethod
+    def create_local_course(self):
+        pass
+
+    @abstractmethod
+    def create_offsite_course(self):
+        pass
+
+    @abstractmethod
+    def get_all_courses(self):
+        pass
+
+    @abstractmethod
+    def get_courses(self, value):
+        pass
 
 
 class CourseFactory:
@@ -235,6 +254,15 @@ class CourseFactory:
         self, name: str, program: list, place: str, teacher: Teacher
     ):
         return OffsiteCourse(name, program, place, teacher)
+
+    def get_all_courses(self):
+        with open(STORAGE, "r") as f:
+            return json.load(f)
+
+    def get_courses(self, course_type):
+        """according to course type return its courses"""
+        with open(STORAGE, "r") as f:
+            return [elem for elem in json.load(f) if elem["type"] == course_type]
 
 
 course_factory = CourseFactory()
