@@ -1,1 +1,522 @@
-[{"Voldemar": [{"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}]}, {"Yaroslav": [{"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}, {"name": "English", "program": ["this", "that", "those"], "type": "local", "laboratory": 125}, {"name": "English", "program": ["this", "that", "those"], "place": "Kyiv", "type": "offsite"}]}]
+[
+    {
+        "Yaroslav":
+        [
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav1":
+        [
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "English",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav2":
+        [
+            {
+                "name": "Math",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Math",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            },
+            {
+                "name": "Physics",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Physics",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav3":
+        [
+            {
+                "name": "Math",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Math",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            },
+            {
+                "name": "Physics",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Physics",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav4":
+        [
+            {
+                "name": "Literature",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Literature",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav5":
+        [
+            {
+                "name": "Literature",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Literature",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav7":
+        [
+            {
+                "name": "Programming",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Programming",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav6":
+        [
+            {
+                "name": "Programming",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Programming",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav8":
+        [
+            {
+                "name": "Static",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Static",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav9":
+        [
+            {
+                "name": "Static",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Static",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav10":
+        [
+            {
+                "name": "Ecology",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Ecology",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav11":
+        [
+            {
+                "name": "Ecology",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Ecology",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav12":
+        [
+            {
+                "name": "TY",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "TY",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav13":
+        [
+            {
+                "name": "TY",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "TY",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav14":
+        [
+            {
+                "name": "Geography",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Geography",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    },
+    {
+        "Yaroslav15":
+        [
+            {
+                "name": "Geography",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "type": "local",
+                "laboratory": 125
+            },
+            {
+                "name": "Geography",
+                "program":
+                [
+                    "this",
+                    "that",
+                    "those"
+                ],
+                "place": "Kyiv",
+                "type": "offsite"
+            }
+        ]
+    }
+]

@@ -1,9 +1,21 @@
 import json
 from abc import ABC, abstractmethod
+from types import SimpleNamespace
 
 
 STORAGE = "academy_storage.json"
 TEACHER_STORAGE = "teacher_schedule.json"
+
+
+class Object:
+    """transform NameSpace object to json format"""
+
+    @staticmethod
+    def toJSON(elem):
+        try:
+            return [x.__dict__ for x in elem]
+        except TypeError:
+            return elem.__dict__
 
 
 class ITeacher(ABC):
@@ -82,10 +94,10 @@ class ICourse(ABC):
 
 
 class Course(ICourse):
-    def __init__(self, name: str, program: list, teacher: Teacher):
+    def __init__(self, name: str, program: list, teachers):
         self.name = name
         self.program = program
-        self.teacher = teacher
+        self.teachers = list(teachers)
 
     @property
     def name(self):
@@ -93,7 +105,7 @@ class Course(ICourse):
 
     @property
     def teacher(self):
-        return self.__teacher
+        return self.__teachers
 
     @property
     def program(self):
@@ -113,51 +125,78 @@ class Course(ICourse):
 
     @teacher.setter
     def teacher(self, value):
-        if not isinstance(value, Teacher):
+        if not (
+            isinstance(value, list) and all(isinstance(elem, Teacher) for elem in value)
+        ):
             raise TypeError("teacher must be Teacher type")
         self.__teacher = value
 
     def build_couse(self, mode="course") -> dict:
+        """create course according to value"""
 
-        course = {}
-        course["name"] = self.name
-        course["program"] = self.program
+        course = SimpleNamespace()
+        course.name = self.name
+        course.program = self.program
         if isinstance(self, LocalCourse):
-            course["type"] = "local"
-            course["laboratory"] = self.laboratory
+            course.type = "local"
+            course.laboratory = self.laboratory
         elif isinstance(self, OffsiteCourse):
-            course["place"] = self.place
-            course["type"] = "offsite"
+            course.place = self.place
+            course.type = "offsite"
         if mode == "course":
-            course["teacher"] = self.teacher.name
+            course.teachers = [elem.name for elem in self.teachers]
         return course
 
     def save_course(self):
+        """save course into database"""
 
         with open(STORAGE, "r") as f:
-            stor = json.load(f)
-        stor.append(self.build_couse())
+            stor = json.load(f, object_hook=lambda d: SimpleNamespace(**d))
+
+        if self.build_couse() not in stor:
+            stor.append(self.build_couse())
         with open(STORAGE, "w") as f:
-            json.dump(stor, f)
+            json.dump(Object.toJSON(stor), f)
 
     def add_cours_to_teacher_schedule(self):
+        """add this cource to teacher side in database"""
 
         with open(TEACHER_STORAGE, "r") as f:
             stor = json.load(f)
+        a = 0
         for elem in stor:
-            if elem.get(self.teacher.name):
-                teacher_schedule = elem[self.teacher.name]
-                teacher_schedule.append(self.build_couse("teacher"))
-                break
-        else:
-            stor.append({self.__teacher.name: [self.build_couse("teacher")]})
+            for teacher in self.teachers:
+                if elem.get(teacher.name):
+                    teacher_schedule = elem[teacher.name]
+                    if self.build_couse("teacher") not in teacher_schedule:
+                        teacher_schedule.append(
+                            Object.toJSON(self.build_couse("teacher"))
+                        )
+                        a += 1
 
+        if not a:
+            for teacher in self.teachers:
+                stor.append(
+                    {teacher.name: [Object.toJSON(self.build_couse("teacher"))]}
+                )
         with open(TEACHER_STORAGE, "w") as f:
             json.dump(stor, f)
 
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        course_type = "local" if isinstance(self, LocalCourse) else "offsite"
+
+        if self.index < len(CourseFactory.get_courses(course_type)):
+            self.index += 1
+            return CourseFactory.get_courses(course_type)[self.index - 1]
+        else:
+            raise StopIteration
+
 
 class ILocalCourse(ABC):
-    @property
     @abstractmethod
     def laboratory(self):
         pass
@@ -182,12 +221,12 @@ class LocalCourse(Course, ILocalCourse):
         self.__laboratory = value
 
     def __str__(self):
-        return f"""LocalCourse(name={self.name}, laboratory={self.laboratory}, teacher={self.teacher})
+        return f"""LocalCourse(name={self.name}, laboratory={self.laboratory}, 
+            teachers={[elem.name for elem in self.teachers]})
             program={self.program}"""
 
 
 class IOffsiteCourse(ABC):
-    @property
     @abstractmethod
     def place(self):
         pass
@@ -212,7 +251,8 @@ class OffsiteCourse(Course, IOffsiteCourse):
         self.__place = value
 
     def __str__(self):
-        return f"""LocalCourse(name={self.name}, place={self.place}, teacher={self.teacher})
+        return f"""LocalCourse(name={self.name}, place={self.place}, 
+            teachers={[elem.name for elem in self.teachers]})
             program={self.program}"""
 
 
@@ -239,36 +279,55 @@ class ICourseFactory(ABC):
 
 
 class CourseFactory:
-    # def __init__(self):
-    #     pass
-
     def add_teacher(self, name):
+        """add teacher to database"""
         return Teacher(name)
 
     def create_local_course(
         self, name: str, program: list, laboratory: int, teacher: Teacher
     ):
+        """create local courece"""
         return LocalCourse(name, program, laboratory, teacher)
 
     def create_offsite_course(
         self, name: str, program: list, place: str, teacher: Teacher
     ):
+        """create offsite courece"""
         return OffsiteCourse(name, program, place, teacher)
 
     def get_all_courses(self):
         with open(STORAGE, "r") as f:
             return json.load(f)
 
-    def get_courses(self, course_type):
+    @staticmethod
+    def get_courses(course_type):
         """according to course type return its courses"""
         with open(STORAGE, "r") as f:
             return [elem for elem in json.load(f) if elem["type"] == course_type]
 
+    def __iter__(self):
+        self.index = 0
+        return self
 
-course_factory = CourseFactory()
-teacher = course_factory.add_teacher("Yaroslav")
-print(teacher)
-course_factory.create_local_course("English", ["this", "that", "those"], 125, teacher)
-course_factory.create_offsite_course(
-    "English", ["this", "that", "those"], "Kyiv", teacher
-)
+    def __next__(self):
+        if self.index < len(self.get_all_courses()):
+            self.index += 1
+            return self.get_all_courses()[self.index - 1]
+        else:
+            raise StopIteration
+
+
+if __name__ == "__main__":
+    course_factory = CourseFactory()
+    teacher = course_factory.add_teacher("Yaroslav14")
+    teacher2 = course_factory.add_teacher("Yaroslav15")
+
+    local = course_factory.create_local_course(
+        "Geography", ["this", "that", "those"], 125, [teacher, teacher2]
+    )
+
+    offsite = course_factory.create_offsite_course(
+        "Geography", ["this", "that", "those"], "Kyiv", [teacher, teacher2]
+    )
+    # for elem in zip(local, offsite):
+    #     print(elem)
